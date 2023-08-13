@@ -1,0 +1,16 @@
+.loading {
+  @apply absolute inset-0;
+  .ant-spin {
+    max-height: none !important;
+  }
+  // .ant-spin-nested-loading,
+  // .ant-spin-container {
+  //   @apply w-full h-full;
+  //   .ant-spin {
+  //     max-height: none;
+  //   }
+  //   .ant-alert-content {
+  //     height: 100%;
+  //   }
+  // }
+}

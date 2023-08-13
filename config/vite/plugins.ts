@@ -2,6 +2,7 @@ import Unocss from "unocss/vite";
 import { createSvgIconsPlugin } from "vite-plugin-svg-icons";
 import { resolve } from "path";
 import react from "@vitejs/plugin-react-swc";
+import { visualizer } from "rollup-plugin-visualizer";
 export const vitePlugins = [
   react(),
   Unocss(),
@@ -15,4 +16,5 @@ export const vitePlugins = [
     // 指定symbolId格式
     symbolId: "svg-[dir]-[name]",
   }),
+  visualizer(),
 ];

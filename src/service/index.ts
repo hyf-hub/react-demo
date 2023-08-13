@@ -1,6 +1,6 @@
 import $Request from "./request";
 import { BASE_URL, TIME_OUT } from "./config";
-import { ElMessage } from "element-plus";
+import { message } from "antd";
 // import { AxiosRequestConfig } from 'axios'
 const Request = new $Request({
   baseURL: BASE_URL,
@@ -14,10 +14,7 @@ const Request = new $Request({
     },
     responseInterceptor: (res) => {
       if (res.data?.code === 500) {
-        ElMessage({
-          type: "error",
-          message: res.data?.msg || "请求异常",
-        });
+        message.error(res.data?.msg || "请求异常");
       }
       return res.data;
     },

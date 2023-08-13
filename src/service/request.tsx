@@ -1,8 +1,10 @@
 // $axios.defaults.baseURL = process.env.VUE_APP_BASE_URL
-import route from "@/router";
+// import route from "@/router";
+import router from "@/router/browserRouter";
 import { getCache } from "@/utils";
+import { Loading } from "@/utils/react/loading/loading";
+import { message } from "antd";
 import axios, { AxiosInstance } from "axios";
-import { ElLoading, ElMessage } from "element-plus";
 import { RequestConfig, RequestInterceptors } from "types/axios";
 // import store from '@/store'
 // import throttle from 'lodash/throttle'
@@ -12,7 +14,7 @@ class Request {
   instance: AxiosInstance;
   interceptors?: RequestInterceptors;
   showLoading = false;
-  loading: any | null = null;
+  loading = new Loading();
   constructor(config: RequestConfig) {
     this.instance = axios.create(config);
     this.interceptors = config.interceptors;
@@ -73,8 +75,9 @@ class Request {
         const { code } = res.data;
         // token 过期
         if (code === 401) {
-          ElMessage({ message: "请重新登录", type: "warning", duration: 1000 });
-          route.replace("/login");
+          message.warning({ content: "请重新登录" });
+          router.navigate("/login");
+
           return res;
         }
         // 错误会提示对应的msg
@@ -84,11 +87,12 @@ class Request {
         return res;
       },
       (err) => {
-        console.log("全局response失败拦截", String(err));
-        const message = /timeout/.test(String(err))
+        message.warning({ content: "请重新登录" });
+        // route.replace("/login");
+        const content = /timeout/.test(String(err))
           ? "连接超时,请稍后再试!"
           : "服务器异常,请稍后再试";
-        ElMessage({ message, type: "error", duration: 1000 });
+        message.error({ content });
         this.loading?.close();
         return err;
       },
@@ -107,12 +111,15 @@ class Request {
       }
       // 是否添加Loading
       if (this.showLoading) {
-        this.loading = ElLoading.service({
-          // lock: true,
-          text: "加载中",
-          background: "transparent",
-          // target: document.getElementById('appHome')
-        });
+        // const loading = <Spin></Spin>;
+        // document.body.appendChild(loading);
+        // this.loading = Spin().service({
+        //   // lock: true,
+        //   text: "加载中",
+        //   background: "transparent",
+        //   // target: document.getElementById('appHome')
+        // });
+        this.loading.show();
       }
       // 单个request的拦截
       if (config.interceptors?.requestInterceptor) {
