@@ -12,7 +12,7 @@ export const vitePlugins = [
   // 使用方式为 <svg-icon name="top_menu"></svg-icon> 其中的name 为 assets/icons/ 下svg的名字
   createSvgIconsPlugin({
     // 指定需要缓存的图标文件夹
-    iconDirs: [resolve(process.cwd(), "src/assets/icons/")],
+    iconDirs: [resolve(process.cwd(), "src/assets/images/svg")],
     // 指定symbolId格式
     symbolId: "svg-[dir]-[name]",
   }),

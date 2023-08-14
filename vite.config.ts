@@ -14,6 +14,14 @@ export default defineConfig((config) => {
         "@": resolve(__dirname, "src"),
       },
     },
+    // css: {
+    //   modules: {
+    //     scopeBehaviour: "local",
+    //   },
+    //   preprocessorOptions: {
+    //     sass: {},
+    //   },
+    // },
     server: {
       host: "0.0.0.0",
     },

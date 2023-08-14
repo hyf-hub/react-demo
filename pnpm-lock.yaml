@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  '@ant-design/icons': ^5.2.5
   '@commitlint/cli': ^17.6.7
   '@commitlint/config-conventional': ^17.6.7
   '@types/lodash-es': ^4.17.8
@@ -36,6 +37,7 @@ specifiers:
   vite-plugin-svg-icons: ^2.0.1
 
 dependencies:
+  '@ant-design/icons': 5.2.5_biqbaboplfbrettd7655fr4n2y
   antd: 5.8.3_biqbaboplfbrettd7655fr4n2y
   axios: 1.4.0
   dayjs: 1.11.9

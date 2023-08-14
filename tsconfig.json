@@ -20,7 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "baseUrl": "./",
-    "types": ["vite/client"],
+    "types": ["vite/client", "./node_modules/vite-plugin-svg-icons/client"],
     "paths": {
       "@/*": ["src/*"]
     }

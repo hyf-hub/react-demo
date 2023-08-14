@@ -5,7 +5,7 @@ import { getCache } from "@/utils";
 import { Loading } from "@/utils/react/loading/loading";
 import { message } from "antd";
 import axios, { AxiosInstance } from "axios";
-import { RequestConfig, RequestInterceptors } from "types/axios";
+import { CallbackConfig, RequestConfig, RequestInterceptors } from "types/axios";
 // import store from '@/store'
 // import throttle from 'lodash/throttle'
 // 避免太频繁的弹窗
@@ -21,7 +21,7 @@ class Request {
     // this.showLoading = config.showLoading ?? true
     // 全局的请求拦截
     this.instance.interceptors.request.use(
-      (config: RequestConfig) => {
+      (config: CallbackConfig) => {
         if (config.isFormData) {
           config.transformRequest = [
             function (data) {
@@ -124,7 +124,7 @@ class Request {
       // 单个request的拦截
       if (config.interceptors?.requestInterceptor) {
         // 这里拦截单个request的请求时 将config传过去 在单个请求函数返回需要修改的config 然后再传给实例
-        config = config.interceptors.requestInterceptor(config);
+        config = config.interceptors.requestInterceptor(config as CallbackConfig);
       }
       this.instance
         .request<any, T>(config)

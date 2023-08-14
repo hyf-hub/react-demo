@@ -1,11 +1,12 @@
-import { useEffect } from "react";
 import Router from "@/router";
-import { TestWeb } from "./service/test";
+
+// import { useEffect } from "react";
+// import { TestWeb } from "./service/test";
 
 function App() {
-  useEffect(() => {
-    TestWeb();
-  }, []);
+  // useEffect(() => {
+  //   TestWeb();
+  // }, []);
   return (
     <>
       <Router></Router>

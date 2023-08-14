@@ -5,11 +5,11 @@ export class Loading {
   count = 0;
   isLoading = true;
   root;
+  divEl = document.createElement("div");
   constructor() {
-    const div = document.createElement("div");
-    document.body.appendChild(div);
-    div.classList.add("loading");
-    this.root = createRoot(div);
+    document.body.appendChild(this.divEl);
+    this.divEl.classList.add("loading");
+    this.root = createRoot(this.divEl);
     this.render();
   }
   show() {
@@ -19,8 +19,11 @@ export class Loading {
     this.count++;
   }
   close() {
+    console.log("销毁");
     this.isLoading = false;
-    this.render();
+    this.root.unmount();
+    document.body.removeChild(this.divEl);
+    // this.render();
   }
   render() {
     this.root.render(
